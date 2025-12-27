@@ -1,0 +1,764 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+  scroll-padding-top:100px;
+}
+
+:root {
+  --ferrari-red: #DC0000;
+  --bg-primary: #0a0a0a;
+  --bg-secondary: #141414;
+  --accent: #00d9ff;
+  --gold: #FFD700;
+  --text-primary: #fff;
+  --text-secondary: #999;
+  --card-bg: #1a1a1a;
+}
+
+body.light-mode {
+  --bg-primary: #f8f8f8;
+  --bg-secondary: #ffffff;
+  --accent: #0099cc;
+  --text-primary: #1a1a1a;
+  --text-secondary: #666;
+  --card-bg: #e8e8e8;
+}
+
+body {
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  overflow-x: hidden;
+  transition: .4s ease;
+}
+
+#nextline{
+    padding-top : 10px;
+}
+
+.site-bg-video{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: -2;    
+}
+
+.site-bg-overlay{
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.75);  
+  z-index: -1;
+}
+
+body.light-mode .site-bg-overlay{
+  background: rgba(255,255,255,0.35);  
+}
+
+/* NAVIGATION BAR*/
+.navbar {
+  position: fixed;
+  top:0;
+  width:100%;
+  padding:1.2rem 5%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background: rgba(10,10,10,.98);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(220,0,0,.2);
+  z-index:1000;
+  transition:.3s;
+}
+
+body.light-mode .navbar{
+  background:#fff;
+  border-bottom:1px solid rgba(0,0,0,.1);
+}
+
+.navbar.scrolled{
+  padding:.8rem 5%;
+  box-shadow:0 4px 30px rgba(220,0,0,.3);
+}
+
+.logo{
+  font-size:1.8rem;
+  font-weight:900;
+  background:linear-gradient(135deg,var(--ferrari-red),var(--accent));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  letter-spacing:2px;
+}
+
+.nav-links{
+  list-style:none;
+  display:flex;
+  align-items:center;
+  gap:2.5rem;
+}
+
+.nav-links a{
+  color:var(--text-primary);
+  text-decoration:none;
+  font-size:.9rem;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  position:relative;
+}
+
+.nav-links a::after{
+  content:'';
+  position:absolute;
+  bottom:-5px;
+  left:0;
+  width:0;
+  height:2px;
+  background:linear-gradient(90deg,var(--ferrari-red),var(--accent));
+  transition:.3s;
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after{
+  width:100%;
+}
+
+.theme-toggle{
+  padding:.6rem 1.5rem;
+  border-radius:25px;
+  background:linear-gradient(135deg,var(--ferrari-red),#ff3333);
+  border:none;
+  cursor:pointer;
+  color:#fff;
+  font-weight:bold;
+}
+
+.menu-toggle{
+  display:none;
+  flex-direction:column;
+  gap:5px;
+  cursor:pointer;
+}
+
+.menu-toggle span{
+  width:28px;
+  height:3px;
+  background:var(--text-primary);
+  border-radius:3px;
+}
+
+/* SPACING */
+
+
+.bio-section {
+  padding-top: 210px !important;
+  padding-bottom: 100px !important;
+}
+
+.section {
+    padding-bottom: 100px;
+}
+
+#home {
+    padding-top: 200px;
+    padding-bottom: 150px !important;
+}
+
+
+
+/* MAIN PAGE */
+
+
+.hero{
+  height:100vh;
+  background:linear-gradient(135deg, rgba(220,0,0,.3), rgba(0,0,0,.8)),
+  url(https://cdn.ferrari.com/cms/network/media/img/resize/67ac82f3596e810010250402-ferrari-lewis-hamilton-lh-quote?width=1920&height=1920);
+  background-size:cover;
+  background-position:center;
+  background-attachment:fixed;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+  
+}
+
+.hero::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:radial-gradient(circle, transparent, rgba(0,0,0,.8));
+}
+
+.hero-content{
+  z-index:2;
+  max-width:1100px;
+}
+
+.hero-subtitle{
+  color:var(--ferrari-red);
+  letter-spacing:3px;
+  text-transform:uppercase;
+}
+
+.hero h1{
+  font-size:5rem;
+  letter-spacing:5px;
+  font-weight:900;
+  background:linear-gradient(135deg,#fff,var(--accent));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  text-shadow:0 0 35px rgba(0,217,255,.5);
+}
+
+.hero-quote{
+  color:var(--text-secondary);
+  margin-bottom:3rem;
+}
+
+/* THE HERO STATS */
+.counters{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:2rem;
+}
+
+.counter-item{
+  background:rgba(20,20,20,.8);
+  padding:2rem;
+  border-radius:15px;
+  border:2px solid transparent;
+  transition:.4s;
+}
+
+.counter-item:hover{
+  transform:translateY(-12px) scale(1.02);
+  border-color:var(--ferrari-red);
+  box-shadow:0 20px 50px rgba(220,0,0,.4);
+}
+
+.counter-item h3{
+  color:var(--ferrari-red);
+  font-size:3.5rem;
+  font-weight:900;
+}
+
+/* BIO */
+
+
+.bio-section{
+  background:transparent;
+}
+
+.bio-content{
+  max-width:1200px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:1fr ;
+  gap:3rem;
+  align-items:flex-start;
+  padding-bottom: 140px;
+}
+
+.bio-text h3{
+  color:var(--ferrari-red);
+}
+
+.bio-text p{
+  color:var(--text-secondary);
+  margin-bottom:1rem;
+}
+
+body.light-mode .bio-text p{
+  color:#000;          
+}
+
+.bio-stats{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:1.5rem;
+  width:100%;
+}
+
+.bio-stat{
+  position: relative;
+  background: var(--card-bg);
+  padding: 1.5rem;
+  border-radius: 18px;
+  border-left: 6px solid var(--ferrari-red);
+  border: 2px solid transparent;
+  overflow: hidden;
+  transition: transform .3s ease;
+}
+
+.bio-stat::before{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(220,0,0,.6);
+  width: 0%;
+  transition: width .4s ease-in-out;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.bio-stat:hover::before{
+  width: 100%;
+}
+
+.bio-stat > *{
+  position: relative;
+  z-index: 1;
+}
+
+.bio-stat-label{
+  color:var(--text-secondary);
+  font-size:.9rem;
+  text-transform:uppercase;
+}
+
+.bio-stat:hover .bio-stat-label{
+  color:var(--text-secondary);
+}
+
+/* TIMELINE */
+
+
+#timeline h2{
+  text-align:center;
+  font-size:3rem;
+  font-weight:900;
+  margin-bottom:50px;
+  margin-top:40px;
+  position:relative;
+  padding-top: 40px;
+}
+
+#timeline h2::after{
+  content:'';
+  width:140px;
+  height:5px;
+  background:linear-gradient(90deg,var(--ferrari-red),var(--accent));
+  position:absolute;
+  left:50%;
+  transform:translateX(-50%);
+  bottom:-12px;
+  border-radius:5px;
+}
+
+.timeline{
+  max-width:1100px;
+  margin:auto;
+  position:relative;
+}
+
+.timeline::before{
+  content:'';
+  width:3px;
+  height:100%;
+  background:linear-gradient(var(--ferrari-red),var(--accent));
+  position:absolute;
+  left:50%;
+  transform:translateX(-50%);
+}
+
+.timeline-item{
+  width:45%;
+  position:relative;
+  opacity:1;
+}
+
+.timeline-item:nth-child(odd){
+  left:0;
+}
+.timeline-item:nth-child(even){
+  left:55%;
+}
+
+.timeline-content{
+  display:block;
+  text-decoration:none;
+  color:var(--text-primary);
+  background:var(--card-bg);
+  padding:2rem;
+  border-radius:15px;
+  border:2px solid transparent;
+  transition:.4s ease;
+}
+
+.timeline-content:hover{
+  transform:scale(1.05);
+  border-color:var(--ferrari-red);
+}
+
+/* STATS */
+
+#stats{
+  padding-top: 120px !important;
+  padding-bottom: 140px !important;
+}
+
+#stats .chart-container{
+  margin-top: 30px !important;
+}
+
+
+#stats h2{
+  text-align:center;
+  font-size:3rem;
+  font-weight:900;
+  margin-bottom:50px;
+  margin-top:40px;
+  position:relative;
+}
+
+#stats h2::after{
+  content:'';
+  width:140px;
+  height:5px;
+  background:linear-gradient(90deg,var(--ferrari-red),var(--accent));
+  position:absolute;
+  left:50%;
+  transform:translateX(-50%);
+  bottom:-12px;
+  border-radius:5px;
+}
+
+.stats-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:2rem;
+}
+
+.stat-card{
+  background:var(--card-bg);
+  padding:2rem;
+  border-radius:10px;
+  border:2px solid transparent;
+  text-align:center;
+  transition:.4s;
+}
+
+.stat-card:hover{
+  transform:translateY(-12px) scale(1.02);
+  border-color:var(--ferrari-red);
+  box-shadow:0 20px 60px rgba(220,0,0,.4);
+}
+
+.stat-card i{
+  font-size:3rem;
+  color:var(--ferrari-red);
+}
+
+.chart-container{
+  background:var(--card-bg);
+  padding:3rem;
+  border-radius:15px;
+  margin-top:70px;
+}
+
+/* GALLERY */
+
+#gallery h2{
+  text-align:center;
+  font-size:3rem;
+  font-weight:900;
+  margin-bottom:50px;
+  margin-top:40px;
+  position:relative;
+}
+
+#gallery h2::after{
+  content:'';
+  width:140px;
+  height:5px;
+  background:linear-gradient(90deg,var(--ferrari-red),var(--accent));
+  position:absolute;
+  left:50%;
+  transform:translateX(-50%);
+  bottom:-12px;
+  border-radius:5px;
+}
+
+.gallery-filters{
+  display:flex;
+  gap:1rem;
+  justify-content:center;
+  margin-bottom:2rem;
+}
+
+.filter-btn{
+  padding:.8rem 2rem;
+  border-radius:25px;
+  border:2px solid var(--ferrari-red);
+  background:transparent;
+  color:#fff;
+  cursor:pointer;
+  transition:.3s ease;
+}
+
+.filter-btn.active,
+.filter-btn:hover{
+  background:var(--ferrari-red);
+}
+
+body.light-mode .filter-btn{
+  background:#fff;
+  color:#000;          
+  border-color:var(--ferrari-red);
+}
+
+body.light-mode .filter-btn:hover,
+body.light-mode .filter-btn.active{
+  background:var(--ferrari-red);
+  color:#fff;
+}
+
+.gallery-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+  gap:1.5rem;
+}
+
+.gallery-item{
+  aspect-ratio: 16/9;      
+  overflow: hidden;
+  border-radius: 20px;
+}
+
+.gallery-item img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;      
+  display: block;
+  transition: 0.4s;
+}
+
+.gallery-item:hover img{
+  transform:scale(1.2);
+}
+
+/* FULL SCREEEN */
+
+
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.95);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:1000;
+}
+
+.modal.active{
+  display:flex;
+}
+
+.modal-content img{
+  max-width:90vw;
+  max-height:90vh;
+  border-radius:10px;
+}
+
+.modal-close{
+  position:absolute;
+  top:40px;
+  right:60px;
+  font-size:3rem;
+  color:white;
+  cursor:pointer;
+}
+
+/* FAN FORM */
+
+#fan h2{
+  text-align:center;
+  font-size:3rem;
+  font-weight:900;
+  margin-bottom:50px;
+  margin-top:40px;
+  position:relative;
+}
+
+#fan h2::after{
+  content:'';
+  width:140px;
+  height:5px;
+  background:linear-gradient(90deg,var(--ferrari-red),var(--accent));
+  position:absolute;
+  left:50%;
+  transform:translateX(-50%);
+  bottom:-12px;
+  border-radius:5px;
+}
+
+.fan-form{
+  max-width:700px;
+  margin:auto;
+  background:var(--card-bg);
+  padding:3rem;
+  border-radius:15px;
+}
+
+.form-group{
+  margin-bottom:1.5rem;
+}
+
+.form-group label{
+  color:var(--ferrari-red);
+}
+
+.form-group input,
+.form-group textarea{
+  width:100%;
+  padding:1rem;
+  background:var(--bg-secondary);
+  border:none;
+  border-radius:10px;
+  color:white;
+}
+
+.submit-btn{
+  width:100%;
+  padding:1.2rem;
+  background:linear-gradient(135deg,var(--ferrari-red),#ff3333);
+  color:white;
+  border:none;
+  border-radius:10px;
+  font-size:1.2rem;
+}
+
+/* FOOTER */
+.footer{
+  background:var(--bg-secondary);
+  padding:2rem;
+  text-align:center;
+}
+
+/* BAR */
+
+.scroll-progress{
+  position:fixed;
+  top:0;
+  left:0;
+  height:4px;
+  width:0;
+  background:linear-gradient(90deg,var(--ferrari-red),var(--accent));
+  z-index:9999;
+}
+
+/*  RESPONSIVE */
+
+@media(max-width: 900px){
+
+  .hero{
+    height: auto;
+    padding-top: 130px;
+    padding-bottom: 120px;
+  }
+
+  .hero h1{
+    font-size: 2.6rem;
+    line-height: 1.1;
+    text-align: center;
+  }
+
+  .hero-subtitle{
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+  }
+
+  .hero-quote{
+    font-size: 0.9rem;
+    width: 90%;
+    margin: 10px auto 25px;
+    text-align: center;
+  }
+
+  .counters{
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    width: 95%;
+    margin: auto;
+  }
+
+  .counter-item{
+    padding: 1.2rem;
+    border-radius: 12px;
+  }
+
+  .counter-item h3{
+    font-size: 2rem;
+  }
+
+  .counter-item p{
+    font-size: .8rem;
+  }
+
+  .bio-content{
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .stats-grid{
+    grid-template-columns: 1fr;
+  }
+
+  .gallery-grid{
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .timeline{
+    max-width: 95%;
+    margin: auto;
+  }
+
+  .timeline::before{
+    left: 20px !important;
+    transform: none !important;
+  }
+
+  .timeline-item{
+    width: 100% !important;
+    left: 0 !important;
+    margin-bottom: 40px;
+  }
+
+  .timeline-content{
+    margin-left: 50px;
+  }
+}
+
+@media(max-width: 480px){
+
+  .hero h1{
+    font-size: 2.1rem;
+  }
+
+  .counters{
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .counter-item h3{
+    font-size: 1.8rem;
+  }
+
+  .gallery-grid{
+    grid-template-columns: 1fr;
+  }
+}
+
+
+@keyframes fadeIn{
+  to{opacity:1;}
+}

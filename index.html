@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lewis Hamilton - F1 Legend | Official Tribute</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <video class="site-bg-video" autoplay muted loop playsinline>
+        <source src="https://ferrari-cdn.thron.com/delivery/public/video/ferrari/50bd6ca1-5fc2-4bf0-8831-907778bd94ed/bocxuw/WEBFULLHD/1_LH_D" type="video/mp4">
+    </video>
+
+    <div class="site-bg-overlay"></div>
+
+<div class="scroll-progress" id="scroll-progress"></div>
+
+<nav class="navbar">
+  <div class="logo">LH44</div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#home" class="active">Home</a></li>
+    <li><a href="#bio">About</a></li>
+    <li><a href="#timeline">Career</a></li>
+    <li><a href="#stats">Stats</a></li>
+    <li><a href="#gallery">Media</a></li>
+    <li><a href="#fan">Connect</a></li>
+    <li><button class="theme-toggle" id="themeToggle"><i class="fas fa-moon"></i></button></li>
+  </ul>
+
+  <div class="menu-toggle" id="menuToggle">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</nav>
+
+<section id="home" class="hero">
+  <div class="hero-content">
+    <div class="hero-subtitle">7× World Champion</div>
+    <h1>Lewis Hamilton</h1>
+    <p class="hero-quote">"Part of me has always held on to that dream of racing in red. I couldn't be happier to realise it"</p>
+
+    <div class="counters">
+      <div class="counter-item"><h3 class="count" data-target="105">0</h3><p>Race Wins</p></div>
+      <div class="counter-item"><h3 class="count" data-target="7">0</h3><p>World Titles</p></div>
+      <div class="counter-item"><h3 class="count" data-target="104">0</h3><p>Pole Positions</p></div>
+      <div class="counter-item"><h3 class="count" data-target="202">0</h3><p>Podiums</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="bio" class="bio-section">
+  <div class="bio-content">
+    <div class="bio-text">
+      <h3>The Legend in Red</h3>
+      <p id="nextline">Lewis Hamilton is one of the greatest Formula 1 drivers of all time, with seven World Championship titles.</p>
+      <p>Born in Stevenage, England, he changed the sport forever.</p>
+      <p>In 2025, he fulfilled a lifelong dream by joining Ferrari.</p>
+    </div>
+
+    <div class="bio-stats">
+      <div class="bio-stat"><div class="bio-stat-label">Born</div><div class="bio-stat-value">7 Jan 1985</div></div>
+      <div class="bio-stat"><div class="bio-stat-label">Country</div><div class="bio-stat-value">Great Britain</div></div>
+      <div class="bio-stat"><div class="bio-stat-label">Height</div><div class="bio-stat-value">1.74 m</div></div>
+      <div class="bio-stat"><div class="bio-stat-label">Weight</div><div class="bio-stat-value">71 kg</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="timeline" class="section">
+  <h2>Career Timeline</h2>
+  <div class="timeline" id="timeline-container"></div>
+</section>
+
+<section id="stats" class="section">
+  <h2>Stats & Achievements</h2>
+
+  <div class="stats-grid">
+    <div class="stat-card"><i class="fas fa-trophy"></i><h3>Most Wins Ever</h3><p>105 Grand Prix victories</p></div>
+    <div class="stat-card"><i class="fas fa-medal"></i><h3>Fastest Laps</h3><p>67 Fastest Laps</p></div>
+    <div class="stat-card"><i class="fas fa-flag-checkered"></i><h3>7 World Titles</h3><p>Legendary</p></div>
+  </div>
+
+  <div class="chart-container">
+    <canvas id="statsChart"></canvas>
+  </div>
+</section>
+
+<section id="gallery" class="section">
+  <h2>Media Gallery</h2>
+  <div class="gallery-filters">
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="ferrari">Ferrari</button>
+    <button class="filter-btn" data-filter="mercedes">Mercedes</button>
+  </div>
+
+  <div class="gallery-grid" id="gallery-grid"></div>
+</section>
+
+<div class="modal" id="modal">
+  <div class="modal-content">
+    <span class="modal-close" onclick="closeModal()">&times;</span>
+    <img id="modal-img">
+  </div>
+</div>
+
+<section id="fan" class="section">
+  <h2>Connect</h2>
+
+  <form class="fan-form" onsubmit="handleSubmit(event)">
+    <div class="form-group"><label>Name</label><input required></div>
+    <div class="form-group"><label>Email</label><input type="email" required></div>
+    <div class="form-group"><label>Message</label><textarea required></textarea></div>
+    <button class="submit-btn">Send Message</button>
+  </form>
+</section>
+
+<footer class="footer">
+  <p>© 2025 Lewis Hamilton Tribute | Unofficial</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="script.js"></script>
+
+</body>
+</html>
