@@ -677,6 +677,11 @@ body.light-mode .filter-btn.active{
   color:white;
 }
 
+body.light-mode .form-group input,
+body.light-mode .form-group textarea{
+  color:black;
+}
+
 .submit-btn{
   width:100%;
   padding:1.2rem;
