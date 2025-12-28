@@ -1,15 +1,12 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-const themeToggle = document.getElementById("themeToggle");
-if(themeToggle){
-  themeToggle.addEventListener("click", ()=>{
-    document.body.classList.toggle("light-mode");
-    const icon = themeToggle.querySelector("i");
-    icon.className = document.body.classList.contains("light-mode")
-      ? "fas fa-sun"
-      : "fas fa-moon";
-  });
-}
+const toggle = document.querySelector(".toggle");
+
+toggle.addEventListener("click",()=>{
+  toggle.classList.toggle("active");
+  document.body.classList.toggle("light-mode");
+});
+
 
 const menuToggle = document.getElementById("menuToggle");
 const navLinks = document.getElementById("navLinks");
@@ -79,29 +76,69 @@ window.addEventListener("scroll",()=>{
 });
 
 const timelineData = [
-  {year:2007,title:"F1 Debut",desc:"Almost won rookie season",link:"https://en.wikipedia.org/wiki/Lewis_Hamilton"},
-  {year:2008,title:"World Champion",desc:"Youngest champ at the time",link:"https://en.wikipedia.org/wiki/Lewis_Hamilton"},
-  {year:2013,title:"Mercedes Move",desc:"Best decision ever",link:"https://en.wikipedia.org/wiki/Lewis_Hamilton"},
-  {year:2014,title:"Hybrid Era Dominance",desc:"Title #2",link:"https://en.wikipedia.org/wiki/Lewis_Hamilton"},
-  {year:2020,title:"7th Title",desc:"Legend cemented",link:"https://en.wikipedia.org/wiki/Lewis_Hamilton"},
-  {year:2025,title:"Ferrari Era Begins",desc:"Dream comes true",link:"https://en.wikipedia.org/wiki/Lewis_Hamilton"}
+  {
+    year: 2007,
+    title: "F1 Debut",
+    desc: "Almost won rookie season",
+    more: "Lewis made one of the most impressive rookie debuts in Formula 1 history, fighting for the championship till the final race."
+  },
+  {
+    year: 2008,
+    title: "World Champion",
+    desc: "Youngest champ at the time",
+    more: "He became the youngest World Champion then, delivering one of the most dramatic last-lap title victories ever in Brazil."
+  },
+  {
+    year: 2013,
+    title: "Mercedes Move",
+    desc: "Best decision ever",
+    more: "Criticised by many for leaving McLaren, this became the greatest team switch in F1 history and changed the sport forever."
+  },
+  {
+    year: 2020,
+    title: "7th Title",
+    desc: "Legend cemented",
+    more: "Lewis matched Michael Schumacher with 7 World Championships, dominating the hybrid era and breaking countless records."
+  }
 ];
 
+
 const timelineContainer = document.getElementById("timeline-container");
-if(timelineContainer){
-  timelineData.forEach(item=>{
-    const div=document.createElement("div");
-    div.className="timeline-item";
-    div.innerHTML=`
-    <a href="${item.link}" target="_blank" rel="noopener noreferrer" class="timeline-content">
-        <div class="timeline-year">${item.year}</div>
-        <div class="timeline-title">${item.title}</div>
-        <p class="timeline-desc">${item.desc}</p>
-    </a>
-    `;
-    timelineContainer.appendChild(div);
-  });
-}
+
+timelineData.forEach(item => {
+  const div = document.createElement("div");
+  div.className = "timeline-item";
+
+  div.innerHTML = `
+    <div class="timeline-content">
+      <div class="timeline-year">${item.year}</div>
+      <div class="timeline-title">${item.title}</div>
+      <p class="timeline-desc">${item.desc}</p>
+
+      <div class="timeline-more">
+        ${item.more}
+      </div>
+
+      <span class="timeline-toggle">Show More ▾</span>
+    </div>
+  `;
+
+  timelineContainer.appendChild(div);
+});
+
+document.addEventListener("click",(e)=>{
+  if(e.target.classList.contains("timeline-toggle")){
+    
+    const card = e.target.closest(".timeline-content");
+    card.classList.toggle("open");
+
+    e.target.textContent =
+      card.classList.contains("open")
+      ? "Show Less ▴"
+      : "Show More ▾";
+  }
+});
+
 
 const gallery=[
  {category:"ferrari",img:"https://cdn.ferrari.com/cms/network/media/img/resize/67c834dfd12cab001f5ef82c-ferrari-sf-25-espacio-media-reveal-1-desk?width=1920&height=1920"},

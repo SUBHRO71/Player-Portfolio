@@ -129,15 +129,38 @@ body.light-mode .navbar{
   width:100%;
 }
 
-.theme-toggle{
-  padding:.6rem 1.5rem;
-  border-radius:25px;
-  background:linear-gradient(135deg,var(--ferrari-red),#ff3333);
-  border:none;
+.toggle{
+  width:60px;
+  height:30px;
+  background:#111;
+  border-radius:50px;
+  border:2px solid #ff3333;
+  position:relative;
   cursor:pointer;
-  color:#fff;
-  font-weight:bold;
 }
+
+.toggle .icon{
+  width:24px;
+  height:24px;
+  background:#ffcc00;
+  border-radius:50%;
+  position:absolute;
+  top:2px;
+  left:2px;
+  transition:.3s;
+  box-shadow:0 0 10px #ff0;
+}
+
+.toggle.active{
+  background:#222;
+}
+
+.toggle.active .icon{
+  left:32px;
+  background:#fff;
+  box-shadow:0 0 10px #fff;
+}
+
 
 .menu-toggle{
   display:none;
@@ -399,6 +422,32 @@ body.light-mode .bio-text p{
   border-color:var(--ferrari-red);
 }
 
+.timeline-more{
+  max-height: 0;
+  overflow: hidden;
+  color: var(--text-secondary);
+  margin-top: 10px;
+  transition: max-height .4s ease, opacity .3s;
+  opacity: 0;
+}
+
+.timeline-content.open .timeline-more{
+  max-height: 300px;
+  opacity: 1;
+}
+
+.timeline-toggle{
+  display: inline-block;
+  margin-top: 10px;
+  color: var(--ferrari-red);
+  cursor: pointer;
+  font-size: .9rem;
+}
+
+.timeline-content.open .timeline-toggle{
+  color: var(--accent);
+}
+
 /* STATS */
 
 #stats{
@@ -434,8 +483,9 @@ body.light-mode .bio-text p{
 
 .stats-grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  grid-template-columns:400px 400px 400px;
   gap:2rem;
+  padding-left:130px;
 }
 
 .stat-card{
@@ -459,8 +509,8 @@ body.light-mode .bio-text p{
 }
 
 .chart-container{
-  background:var(--card-bg);
-  padding:3rem;
+  background:transparent;
+  padding:1rem;
   border-radius:15px;
   margin-top:70px;
 }
@@ -760,5 +810,5 @@ body.light-mode .filter-btn.active{
 
 
 @keyframes fadeIn{
-  to{opacity:1;}
+  to{opacity:0.5;}
 }
