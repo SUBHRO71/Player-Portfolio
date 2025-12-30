@@ -59,10 +59,10 @@ if(hero){
     const vh = window.innerHeight;
 
     if(y <= vh){
-      hero.style.transform = `translate3d(0, ${y * 0.35}px, 0)`;
+      hero.style.transform = `translate3d(0, ${y * 0.65}px, 0)`;
     }
 
-    let fade = 1 - 1.5*(y / vh);
+    let fade = 1 - 1.2*(y / vh);
     hero.style.opacity = fade >= 0 ? fade : 0;
 
     requestAnimationFrame(animateHero);
